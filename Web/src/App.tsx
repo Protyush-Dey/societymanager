@@ -1,8 +1,9 @@
 import React from 'react'
+import LoginPage from './AuthPages/LoginPage.tsx'
 
 const App = () => {
   return (
-    <div>App</div>
+   <LoginPage/>
   )
 }
 
