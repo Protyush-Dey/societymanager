@@ -1,0 +1,6 @@
+C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/x86_64/CMakeFiles/appmodules.dir
+C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/x86_64/CMakeFiles/rebuild_cache.dir
+C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/x86_64/safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir
+C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/x86_64/safeareacontext_autolinked_build/CMakeFiles/edit_cache.dir
+C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/x86_64/safeareacontext_autolinked_build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,15 @@
+# ninja log v5
+6	71	0	C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/x86_64/CMakeFiles/cmake.verify_globs	13cba4828f546a9a
+109	15316	8099043997578784	safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir/5bb2a58e105774014a2315cc97cf02a0/renderer/components/safeareacontext/States.cpp.o	4d484d83a7d32273
+71	17983	8099044024648294	safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir/0a4f649330277e4a3ad3301908212dba/components/safeareacontext/EventEmitters.cpp.o	5416c0ccf6876844
+152	21357	8099044058128098	safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir/944b27a2ebd884c43eee224ed78be95e/codegen/jni/safeareacontext-generated.cpp.o	d307aec5011f44e2
+17	24686	8099044091686637	CMakeFiles/appmodules.dir/OnLoad.cpp.o	e81ae83ab53b9e8c
+41	27849	8099044123287778	safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir/3f8cd2572f77231d2f9a0ffbbcafdd5e/safeareacontext/RNCSafeAreaViewState.cpp.o	30f3b20d08b421c2
+129	27910	8099044124017846	safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir/0a4f649330277e4a3ad3301908212dba/components/safeareacontext/ShadowNodes.cpp.o	77623e3925488605
+28	29074	8099044135557352	safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir/5bb2a58e105774014a2315cc97cf02a0/renderer/components/safeareacontext/Props.cpp.o	21efd67ce45949c4
+88	30506	8099044149937219	safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir/27ea77cd58f0c3e7425d81cac96e9e8f/safeareacontext/ComponentDescriptors.cpp.o	89649a02b834f028
+56	32528	8099044170227732	safeareacontext_autolinked_build/CMakeFiles/react_codegen_safeareacontext.dir/3f8cd2572f77231d2f9a0ffbbcafdd5e/safeareacontext/RNCSafeAreaViewShadowNode.cpp.o	407e0f7d48ccfc88
+2	32586	8099044170757592	CMakeFiles/appmodules.dir/C_/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/build/generated/autolinking/src/main/jni/autolinking.cpp.o	b00b4560fa2e62cf
+32529	32891	8099044174064240	C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/build/intermediates/cxx/Debug/w2jn1w3q/obj/x86_64/libreact_codegen_safeareacontext.so	f75810f2ae364f95
+32891	33121	8099044176493764	C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/build/intermediates/cxx/Debug/w2jn1w3q/obj/x86_64/libappmodules.so	fde3581818122f16
+2	183	0	C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/x86_64/CMakeFiles/cmake.verify_globs	13cba4828f546a9a
