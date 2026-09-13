@@ -1,19 +1,12 @@
 import dotenv from "dotenv";
-dotenv.config();
-
-console.log("==> MONGO_URL:", process.env.MONGO_URL ? "Found" : "Missing");
-console.log("==> PORT:", process.env.PORT);
-
 import express, { ErrorRequestHandler } from "express";
-
 import cors from "cors";
 import http from "http";
 import cookieParser from "cookie-parser";
 import { connectDb } from "./config/mongooseConfig";
+import initializeModules from "./Module/main.route"
 
-import initializeModules from "./Modulecopy/main.route"
-import { connectsql } from "./config/mysqlconfig";
-
+dotenv.config();
 const app = express();
 
 app.use(cors({ origin: process.env.CORS_ORIGIN, credentials: true }));
@@ -42,12 +35,10 @@ const PORT = process.env.PORT || 5000;
 const startServer = async () => {
   try {
     await connectDb();
-    await connectsql();
 
     server.listen(PORT, () => {
       console.log(`🚀 Server running on port ${PORT}`);
       console.log("✅ MongoDB Connected");
-      console.log("✅ MySQL Connected");
     });
   } catch (err) {
     console.error("❌ DB connection error:", err);
