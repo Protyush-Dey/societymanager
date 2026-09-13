@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Input, Button, ConfigProvider, message } from 'antd'
+import { Form, Input, Button,message } from 'antd'
 import { PhoneOutlined, LockOutlined, HomeOutlined } from '@ant-design/icons'
 
 interface LoginFormValues {
@@ -89,7 +89,6 @@ const LoginPage: React.FC = () => {
 
             {/* Remember Me & Forgot Password */}
             <div className="flex items-center justify-between mb-5">
-
               <a
                 href="#forgot-password"
                 onClick={(e) => {

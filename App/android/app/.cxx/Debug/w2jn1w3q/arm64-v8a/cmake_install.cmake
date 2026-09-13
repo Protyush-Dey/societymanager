@@ -44,7 +44,9 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
+  include("C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/arm64-v8a/VectorIconsIonicons_autolinked_build/cmake_install.cmake")
   include("C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/arm64-v8a/safeareacontext_autolinked_build/cmake_install.cmake")
+  include("C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/arm64-v8a/rnscreens_autolinked_build/cmake_install.cmake")
 
 endif()
 

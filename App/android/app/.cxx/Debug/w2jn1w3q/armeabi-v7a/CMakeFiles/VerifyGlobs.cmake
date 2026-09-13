@@ -12,6 +12,30 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/armeabi-v7a/CMakeFiles/cmake.verify_globs")
 endif()
 
+# react_codegen_SRCS at C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/@react-native-vector-icons/ionicons/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/@react-native-vector-icons/ionicons/android/build/generated/source/codegen/jni/*.cpp")
+set(OLD_GLOB
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/@react-native-vector-icons/ionicons/android/build/generated/source/codegen/jni/VectorIconsIonicons-generated.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/armeabi-v7a/CMakeFiles/cmake.verify_globs")
+endif()
+
+# react_codegen_SRCS at C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/@react-native-vector-icons/ionicons/android/build/generated/source/codegen/jni/CMakeLists.txt:9 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/@react-native-vector-icons/ionicons/android/build/generated/source/codegen/jni/react/renderer/components/VectorIconsIonicons/*.cpp")
+set(OLD_GLOB
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/@react-native-vector-icons/ionicons/android/build/generated/source/codegen/jni/react/renderer/components/VectorIconsIonicons/ComponentDescriptors.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/@react-native-vector-icons/ionicons/android/build/generated/source/codegen/jni/react/renderer/components/VectorIconsIonicons/EventEmitters.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/@react-native-vector-icons/ionicons/android/build/generated/source/codegen/jni/react/renderer/components/VectorIconsIonicons/Props.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/@react-native-vector-icons/ionicons/android/build/generated/source/codegen/jni/react/renderer/components/VectorIconsIonicons/ShadowNodes.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/@react-native-vector-icons/ionicons/android/build/generated/source/codegen/jni/react/renderer/components/VectorIconsIonicons/States.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/armeabi-v7a/CMakeFiles/cmake.verify_globs")
+endif()
+
 # LIB_CUSTOM_SRCS at C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-safe-area-context/android/src/main/jni/CMakeLists.txt:12 (file)
 file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-safe-area-context/android/src/main/jni/*.cpp")
 set(OLD_GLOB
@@ -50,6 +74,73 @@ set(OLD_GLOB
   "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-safe-area-context/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/safeareacontext/Props.cpp"
   "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-safe-area-context/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/safeareacontext/ShadowNodes.cpp"
   "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-safe-area-context/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/safeareacontext/States.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/armeabi-v7a/CMakeFiles/cmake.verify_globs")
+endif()
+
+# LIB_CUSTOM_SRCS at C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/CMakeLists.txt:23 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/*.cpp")
+set(OLD_GLOB
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/rnscreens.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/armeabi-v7a/CMakeFiles/cmake.verify_globs")
+endif()
+
+# LIB_CUSTOM_SRCS at C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/CMakeLists.txt:23 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/*.cpp")
+set(OLD_GLOB
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSFormSheetHostShadowNode.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSFormSheetHostState.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSFullWindowOverlayShadowNode.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSModalScreenShadowNode.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSSafeAreaViewShadowNode.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSSafeAreaViewState.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSScreenShadowNode.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSScreenShadowNodeCommitHook.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSScreenStackHeaderConfigShadowNode.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSScreenStackHeaderConfigState.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSScreenStackHeaderSubviewShadowNode.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSScreenStackHeaderSubviewState.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSScreenState.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSSplitScreenShadowNode.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSStackHeaderConfigShadowNode.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSStackHeaderConfigState.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSStackHeaderItemShadowNode.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSStackHeaderItemState.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSStackHeaderSubviewShadowNode.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSStackHeaderSubviewState.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSStackScreenShadowNode.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSStackScreenState.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSTabsBottomAccessoryShadowNode.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSTabsHostShadowNode.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/RNSTabsHostState.cpp"
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/armeabi-v7a/CMakeFiles/cmake.verify_globs")
+endif()
+
+# LIB_CUSTOM_SRCS at C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/CMakeLists.txt:23 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../../common/cpp/react/renderer/components/rnscreens/utils/*.cpp")
+set(OLD_GLOB
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/android/app/.cxx/Debug/w2jn1w3q/armeabi-v7a/CMakeFiles/cmake.verify_globs")
+endif()
+
+# LIB_CODEGEN_SRCS at C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/CMakeLists.txt:24 (file)
+file(GLOB NEW_GLOB LIST_DIRECTORIES true "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnscreens/*.cpp")
+set(OLD_GLOB
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnscreens/ComponentDescriptors.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnscreens/EventEmitters.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnscreens/Props.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnscreens/ShadowNodes.cpp"
+  "C:/Users/PROTYUSH/Desktop/SocietyManagemaent/App/node_modules/react-native-screens/android/src/main/jni/../../../build/generated/source/codegen/jni/react/renderer/components/rnscreens/States.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
