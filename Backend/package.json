@@ -1,5 +1,5 @@
 {
-  "name": "SocietyManager",
+  "name": "expensecheaker",
   "version": "1.0.0",
   "type": "commonjs",
   "main": "index.ts",
@@ -22,7 +22,8 @@
     "jsonwebtoken": "^9.0.3",
     "mongoose": "~8.21.0",
     "mongoose-aggregate-paginate-v2": "^1.1.4",
-    "multer": "^2.2.0",
+    "mysql2": "^3.22.5",
+    "nodemailer": "^8.0.2",
     "resend": "^6.9.3"
   },
   "devDependencies": {
@@ -31,7 +32,6 @@
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.6",
     "@types/jsonwebtoken": "^9.0.10",
-    "@types/multer": "^2.2.0",
     "@types/node": "^25.6.0",
     "nodemon": "^3.1.11",
     "ts-node": "^10.9.2",

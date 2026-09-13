@@ -1,0 +1,48 @@
+user
+/register -> register user
+/logIn -> loginUser
+/logOut -> logout user
+/ResetRefreshToken -> reset refreshtoken
+            <- forgot password ->
+/forgotPassword -> otp genarate and send it in mail but the mailer does not working
+/verifyPasswordChangeOtp -> verify the otp and gen a verifyJwtToken
+/updatePassword -> to find user
+------------------------------------------------
+/getMonthExpenseOfUser ->   get this month expenses
+/getExpenseOfUserByDates -> get Given date expenses
+/changePrimaryAccount/:accountId -> change primary aaccount
+
+account 
+/createAccount -> creat account of a user
+/getAllAccountDetails-> get all account of a user and their balance
+/getMonthExpenseOfAccount/:accountNo -> get current month espenses of this month
+/getExpenseOfAccountByDates/:accountNo -> get current month espenses between given dates
+/deleteAccount/:accountNo -> delete an aaccount and its expense details
+
+
+froend
+/makeRequest/:requestTo -> send friend request with requestId
+/rejectRequest/:requestId ->reject any request from any user
+/delteRequest/:requestTo -> cancel any user request
+/getAllRequestRecieved/:requestId -> get all request to user
+/getAllRequestRecieved/:requestId -> get all request from user pending
+/acceptRequest/:requestId -> accept friend request
+/getAllFriends -> get frienlist 
+
+
+
+expenses
+/createExpense -> to createExpense by  user
+/deleteExpense -> delete expense
+
+
+split
+/createSplit -> make  group split
+/createSingleSplit -> make aa single request split
+/dueGiveSplit/:friendId -> have to pay split of that friend
+/dueGetSplit/:friendId -> will get pay split of that friend
+/deleteSplit/:splitId -> delete a split by the creator
+/payAllDueDone/:friendId ->pay all dues
+/payDueDone ->pay one dues
+/markAllDueDone/:friendId -> mark all dues
+/markDueDone -> mark one dues
