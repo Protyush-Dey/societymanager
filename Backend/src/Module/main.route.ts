@@ -7,7 +7,7 @@ import { Application } from "express";
 
 export default function initializeModules(app: Application): void {
     try {
-        app.use("/expTrack/user" , userRouter);
+        app.use("/society/user" , userRouter);
         // app.use("/expTrack/expense" , expenseRouter);
         // app.use("/expTrack/account" , accountRouter);
         // app.use("/expTrack/split" , splitRouter);

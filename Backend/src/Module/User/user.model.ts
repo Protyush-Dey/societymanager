@@ -12,65 +12,70 @@ import jwt, { SignOptions } from "jsonwebtoken";
 import "dotenv/config";
 import { BaseModel } from "../../Base/Base.model";
 
-@pre<User>("save", async function () {
-  if (!this.isModified("password")) return;
-  this.password = await bcrypt.hash(this.password, 10);
-})
 @modelOptions({
-  schemaOptions: {
-    timestamps: true,
-    collection: "users",
-  },
+    schemaOptions: {
+        _id: false,
+    },
 })
-export class User extends BaseModel {
-  // @prop({
-  //   required: true,
-  //   unique: true,
-  //   lowercase: true,
-  //   trim: true,
-  //   index: true,
-  //   type: () => String,
-  // })
-  // public userName!: string;
+export class IUserName {
+    @prop({ required: true, trim: true })
+    public first!: string;
 
-  @prop({
-    required: true,
-    trim: true,
-    index: true,
-    type: () => String,
-  })
-  public fullName!: string;
+    @prop({ trim: true, default: "" })
+    public last!: string;
+}
 
-  @prop({
-    required: true,
-    unique: true,
-    lowercase: true,
-    trim: true,
-    type: () => String,
-  })
-  public email!: string;
+export enum USERROLE {
+  SUPER_ADMIN = "SUPER_ADMIN",
+  SOCIETY_ADMIN = "SOCIETY_ADMIN",
+  OWNER = "OWNER",
+  TENANT = "TENANT",
+  STAFF = "STAFF",
+  SECURITY = "SECURITY",
+  RESIDENT = "RESIDENT",
+}
 
-//   @prop({ ref: "Account", type: () => mongoose.Schema.Types.ObjectId })
-// public cashAccount?: Ref<any>;
+@modelOptions({
+    schemaOptions: {
+        collection: "users",
+        timestamps: true,
+    },
+})
+export class IUser {
+    @prop({ required: true, _id: false, type: () => IUserName })
+    public name!: IUserName;
 
-// @prop({ ref: "Account", type: () => mongoose.Schema.Types.ObjectId })
-// public primaryAccount?: Ref<any>;
+    @prop({ unique: true, sparse: true, lowercase: true, trim: true })
+    public email?: string;
 
-  @prop({ required: true, type: () => String })
-  public password!: string;
+    @prop({ required: true, unique: true, trim: true })
+    public phone!: string;
 
-  // @prop({ type: () => String })
-  // public refreshToken?: string;
+    @prop({ required: true })
+    public password!: string;
 
-  // @prop({ type: () => String })
-  // public passwordResetOTP?: string;
+    @prop({
+        required: true,
+        enum: USERROLE,
+        default: USERROLE.RESIDENT,
+    })
+    public role!: USERROLE;
 
-  // @prop({ type: () => Date })
-  // public passwordResetExpires?: Date;
+    @prop({ default: null })
+    public profileImage?: string | null;
+
+    @prop({ type: () => [String], default: [] })
+    public pushTokens!: string[];
+
+    @prop({ default: true })
+    public isActive!: boolean;
+
+    @prop({ default: null })
+    public lastLoginAt?: Date | null;
 
 
-  // functions
 
+  // password cheak
   public async isPasswordCorrect(
     this: DocumentType<User>,
     password: string,
@@ -78,6 +83,8 @@ export class User extends BaseModel {
     return bcrypt.compare(password, this.password);
   }
 
+
+  // genarate tokens
   public generateAccessToken(this: DocumentType<User>): string {
     const secret = process.env.ACCESS_TOKEN_SECRET;
     const expiry = process.env.ACCESS_TOKEN_EXPIRY;
@@ -103,16 +110,6 @@ export class User extends BaseModel {
       expiresIn: expiry as SignOptions["expiresIn"],
     });
   }
-
-  // public generateOtpToken(this: DocumentType<User>): string {
-  //   const secret = process.env.OTP_TOKEN_SECRET;
-  //   const expiry = process.env.OTP_TOKEN_EXPIRY;
-  //   if (!secret || !expiry) throw new Error("OTP_TOKEN env vars missing");
-
-  //   return jwt.sign({ _id: this._id, email: this.email }, secret, {
-  //     expiresIn: expiry as SignOptions["expiresIn"],
-  //   });
-  // }
 }
 
 export const UserModel = getModelForClass(User);

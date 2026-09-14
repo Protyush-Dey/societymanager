@@ -5,7 +5,7 @@ import { verifyJwtToken} from "../../middleware/Auth.middleware";
 
 const userRouter = Router();
 
-userRouter.post("/register" , userController.registerUser); //use
+// userRouter.post("/register" , userController.registerUser); //use
 userRouter.post("/logInMobile" , userController.loginUserMobile);   //use
 
 // userRouter.post("/logIn" , userController.loginUser);   //use

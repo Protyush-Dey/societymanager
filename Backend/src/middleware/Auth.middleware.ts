@@ -44,25 +44,3 @@ export const verifyJwtToken = asyncHandler(
   },
 );
 
-
-// otp token cheak
-// export const verifyOtpJwtToken = asyncHandler(
-//   async (req: Request, _res: Response, next: NextFunction) => {
-//     const secret = process.env.OTP_TOKEN_SECRET;
-//     if (!secret) throw new ApiError(500, "OTP_TOKEN_SECRET not configured");
-
-//     const token =
-//       req.cookies?.OtpToken ||
-//       req.header("Authorization")?.replace("Bearer ", "").trim();
-
-//     if (!token) throw new ApiError(401, "Unauthorized — no OTP token provided");
-
-//     const decoded = await verifyToken(token, secret);
-
-//     const user = await UserModel.findById(decoded._id).select("_id email");
-//     if (!user) throw new ApiError(401, "Invalid OTP token");
-
-//     req.user = user;
-//     next();
-//   },
-// );
