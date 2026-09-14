@@ -80,10 +80,10 @@ export class IUser {
   @prop({ default: null })
   public profileImage?: string | null;
 
-  @prop({
-    type: () => [String],
-    default: [],
-  })
+  // @prop({
+  //   type: () => [String],
+  //   default: [],
+  // })
   // public pushTokens!: string[];
 
   // @prop({ default: true })
