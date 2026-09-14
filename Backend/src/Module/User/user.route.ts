@@ -5,10 +5,10 @@ import { verifyJwtToken} from "../../middleware/Auth.middleware";
 
 const userRouter = Router();
 
-// userRouter.post("/register" , userController.registerUser); //use
-userRouter.post("/logInMobile" , userController.loginUserMobile);   //use
+userRouter.post("/register" , userController.registerUser);
+userRouter.post("/logIn" , userController.loginUser);
+userRouter.post("/logInMobile" , userController.loginUserMobile);
 
-// userRouter.post("/logIn" , userController.loginUser);   //use
 // userRouter.post("/logOut" , verifyJwtToken , userController.logoutUser);
 // userRouter.get("/me" , verifyJwtToken , userController.me); //use
 // userRouter.post("/resetRefreshToken" , userController.resetRefreshToken);

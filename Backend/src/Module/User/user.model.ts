@@ -37,6 +37,7 @@ export enum USERROLE {
 
   this.password = await bcrypt.hash(this.password, 12);
 })
+
 @modelOptions({
   schemaOptions: {
     collection: "users",
@@ -83,13 +84,13 @@ export class IUser {
     type: () => [String],
     default: [],
   })
-  public pushTokens!: string[];
+  // public pushTokens!: string[];
 
-  @prop({ default: true })
-  public isActive!: boolean;
+  // @prop({ default: true })
+  // public isActive!: boolean;
 
-  @prop({ default: null })
-  public lastLoginAt?: Date | null;
+  // @prop({ default: null })
+  // public lastLoginAt?: Date | null;
 
   public async isPasswordCorrect(
     this: DocumentType<IUser>,

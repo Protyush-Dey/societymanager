@@ -4,6 +4,7 @@ import { ApiError } from "../../utils/ApiError";
 import { ApiResponse } from "../../utils/ApiResponse";
 import { BaseController } from "../../Base/Base.controller";
 import { UserService } from "./user.service";
+import { USERROLE } from "./user.model";
 
 const userService = new UserService();
 
@@ -11,27 +12,45 @@ class UserController extends BaseController {
 
   // register the user
   registerUser = asyncHandler(async (req: Request, res: Response) => {
-    const { fullName, email, password } = req.body as Record<
-      string,
-      string
-    >;
-    if (
-      !fullName?.trim() ||
-      !email?.trim() ||
-      !password?.trim()
-    )
-      throw new ApiError(400, "All fields are required");
+  const {
+    first,
+    last,
+    phone,
+    role,
+    email,
+    password,
+  } = req.body as {
+    first?: string;
+    last?: string;
+    phone?: string;
+    role?: USERROLE;
+    email?: string;
+    password?: string;
+  };
 
-    const user = await userService.registerUser({
-      fullName,
-      email,
-      password,
-    });
-    return this.created(res, "Registered successfully", user);
+  if (
+    !first?.trim() ||
+    !last?.trim()  ||
+    !phone?.trim() ||
+    !email?.trim() ||
+    !password?.trim()
+  ) {
+    throw new ApiError(400, "First name, phone, email and password are required");
+  }
+
+  const user = await userService.registerUser({
+    first: first.trim(),
+    last: last?.trim() || "",
+    phone: phone.trim(),
+    role: role || USERROLE.RESIDENT,
+    email: email.trim().toLowerCase(),
+    password,
   });
 
+  return this.created(res, "Registered successfully", user);
+});
   // login
-  loginUser = asyncHandler(async (req: Request, res: Response) => {
+ loginUser = asyncHandler(async (req: Request, res: Response) => {
     const { phone, password } = req.body as {
       phone: string;
       password: string;
@@ -53,8 +72,6 @@ class UserController extends BaseController {
         }),
       );
   });
-
-
   // mobile login
   loginUserMobile = asyncHandler(async (req: Request, res: Response) => {
     const { phone, password } = req.body as {

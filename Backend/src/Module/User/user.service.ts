@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { ApiError } from "../../utils/ApiError";
 import { BaseService } from "../../Base/Base.service";
-import { IUser, UserModel } from "./user.model";
+import { IUser, UserModel, USERROLE } from "./user.model";
 // import { generateOTP } from "../../utils/otp"; // plug in your OTP util
 // import { ExpenseModel } from "../Expense/expences.model";
 import mongoose from "mongoose";
@@ -24,32 +24,31 @@ export class UserService extends BaseService<User> {
     return { accessToken, refreshToken };
   }
 
-  // private async generateOtpToken(userId: string): Promise<string> {
-  //   const user = await UserModel.findById(userId);
-  //   if (!user) throw new ApiError(404, "User not found");
-
-  //   const otpToken = user.generateOtpToken();
-  //   //user.passwordResetToken = otpToken;
-  //   user.passwordResetOTP = undefined;
-  //   user.passwordResetExpires = undefined;
-  //   await user.save({ validateBeforeSave: false });
-
-  //   return otpToken;
-  // }
-
-
   // register the user
   async registerUser(data: {
-    fullName: string;
+    first: string;
+    last:string
+    phone:string
+    role:USERROLE
     email: string;
     password: string;
   }) {
-    const { fullName, email, password } = data;
+    const { first, last, phone, role = USERROLE.SOCIETY_ADMIN, email, password} = data;
 
-    const exists = await this.exists({ email });
+    const exists = await this.exists({ phone });
     if (exists) throw new ApiError(409, "User already exists");
 
-    const user = await this.create({ fullName, email, password });
+    const user = await this.create({
+    name: {
+      first,
+      last,
+    },
+    phone,
+    role,
+    email,
+    password,
+  });
+
 
     const createdUser = await UserModel.findById(user._id).select(
       "-password"
