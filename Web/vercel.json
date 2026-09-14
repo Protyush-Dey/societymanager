@@ -4,5 +4,12 @@
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ]
+  ],
+  
+  "git": {
+    "deploymentEnabled": {
+      "main": false,
+      "web": true
+    }
+  }
 }
