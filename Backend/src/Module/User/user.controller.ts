@@ -36,7 +36,7 @@ class UserController extends BaseController {
       phone: string;
       password: string;
     };
-    if (!email?.trim() || !password?.trim())
+    if (!phone?.trim() || !password?.trim())
       throw new ApiError(400, "All fields are required");
 
     const { loginData, accessToken, refreshToken } =
