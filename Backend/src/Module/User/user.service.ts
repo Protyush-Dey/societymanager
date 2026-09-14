@@ -6,7 +6,7 @@ import { IUser, UserModel, USERROLE } from "./user.model";
 // import { ExpenseModel } from "../Expense/expences.model";
 import mongoose from "mongoose";
 
-export class UserService extends BaseService<User> {
+export class UserService extends BaseService<IUser> {
   constructor() {
     super(UserModel);
   }
