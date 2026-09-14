@@ -30,40 +30,42 @@ class UserController extends BaseController {
     return this.created(res, "Registered successfully", user);
   });
 
-  // login the user
-  // loginUser = asyncHandler(async (req: Request, res: Response) => {
-  //   const { email, password } = req.body as {
-  //     loginInfo: string;
-  //     password: string;
-  //   };
-  //   if (!email?.trim() || !password?.trim())
-  //     throw new ApiError(400, "All fields are required");
-
-  //   const { loginData, accessToken, refreshToken } =
-  //     await userService.loginUser(email, password);
-
-  //   return res
-  //     .status(200)
-  //     .clearCookie("OtpToken")
-  //     .cookie("AccessToken", accessToken, this.cookieOptions)
-  //     .cookie("RefreshToken", refreshToken, this.cookieOptions)
-  //     .json(
-  //       new ApiResponse(200, "Logged in successfully", {
-  //         user: loginData,
-  //       }),
-  //     );
-  // });
-  // mobile
-  loginUserMobile = asyncHandler(async (req: Request, res: Response) => {
-    const { email, password } = req.body as {
-      email: string;
+  // login
+  loginUser = asyncHandler(async (req: Request, res: Response) => {
+    const { phone, password } = req.body as {
+      phone: string;
       password: string;
     };
     if (!email?.trim() || !password?.trim())
       throw new ApiError(400, "All fields are required");
 
     const { loginData, accessToken, refreshToken } =
-      await userService.loginUser(email, password);
+      await userService.loginUser(phone, password);
+
+    return res
+      .status(200)
+      .clearCookie("OtpToken")
+      .cookie("AccessToken", accessToken, this.cookieOptions)
+      .cookie("RefreshToken", refreshToken, this.cookieOptions)
+      .json(
+        new ApiResponse(200, "Logged in successfully", {
+          user: loginData,
+        }),
+      );
+  });
+
+
+  // mobile login
+  loginUserMobile = asyncHandler(async (req: Request, res: Response) => {
+    const { phone, password } = req.body as {
+      phone: string;
+      password: string;
+    };
+    if (!phone?.trim() || !password?.trim())
+      throw new ApiError(400, "All fields are required");
+
+    const { loginData, accessToken, refreshToken } =
+      await userService.loginUser(phone, password);
 
     return res
       .status(200)

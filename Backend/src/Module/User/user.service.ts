@@ -61,8 +61,8 @@ export class UserService extends BaseService<User> {
 
 
   //   // login the user
-  async loginUser(email: string, password: string) {
-    const user = await UserModel.findOne({ email: email.trim() });
+  async loginUser(phone: string, password: string) {
+    const user = await UserModel.findOne({ phone: phone.trim() });
     if (!user) throw new ApiError(404, "User not found");
 
     const isValid = await user.isPasswordCorrect(password);
