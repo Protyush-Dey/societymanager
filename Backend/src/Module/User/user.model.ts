@@ -145,4 +145,4 @@ export class IUser {
   }
 }
 
-export const UserModel = getModelForClass(IUser);
+export const UserModel = getModelForClass(User);
