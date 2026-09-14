@@ -33,7 +33,7 @@ export class UserService extends BaseService<User> {
     email: string;
     password: string;
   }) {
-    const { first, last, phone, role = USERROLE.SOCIETY_ADMIN, email, password} = data;
+    const { first, last, phone, role, email, password} = data;
 
     const exists = await this.exists({ phone });
     if (exists) throw new ApiError(409, "User already exists");

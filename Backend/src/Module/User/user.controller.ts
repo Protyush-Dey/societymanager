@@ -42,7 +42,7 @@ class UserController extends BaseController {
     first: first.trim(),
     last: last?.trim() || "",
     phone: phone.trim(),
-    role: role || USERROLE.RESIDENT,
+    role: role || USERROLE.SOCIETY_ADMIN,
     email: email.trim().toLowerCase(),
     password,
   });
