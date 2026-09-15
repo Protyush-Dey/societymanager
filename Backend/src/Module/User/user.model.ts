@@ -86,8 +86,8 @@ export class IUser {
   // })
   // public pushTokens!: string[];
 
-  // @prop({ default: true })
-  // public isActive!: boolean;
+  @prop({ default: true })
+  public isActive!: boolean;
 
   // @prop({ default: null })
   // public lastLoginAt?: Date | null;
