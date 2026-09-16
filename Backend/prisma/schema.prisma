@@ -1,0 +1,251 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  SOCIETY_ADMIN
+  OWNER
+  TENANT
+  STAFF
+  SECURITY
+  RESIDENT
+}
+
+model User {
+  id           String    @id @default(uuid())
+  firstName    String
+  lastName     String?   @default("")
+  email        String?   @unique
+  phone        String    @unique
+  password     String
+  role         UserRole  @default(RESIDENT)
+  profileImage String?
+  refreshToken String?
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  // Relations
+  ownedUnits         Unit[]       @relation("UnitOwner")
+  tenantedUnits      Unit[]       @relation("UnitTenant")
+  unitMemberships    UnitMember[]
+  createdComplaints  Complaint[]  @relation("ComplaintCreator")
+  solvedComplaints   Complaint[]  @relation("ComplaintSolver")
+  createdNotices     Notice[]
+
+  @@map("users")
+}
+
+model Society {
+  id        String     @id @default(uuid())
+  name      String
+  email     String
+  phone     String
+  state     String
+  city      String
+  street    String
+  pin       String
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  buildings Building[]
+  notices   Notice[]
+
+  @@map("societies")
+}
+
+model Building {
+  id         String   @id @default(uuid())
+  name       String
+  societyId  String
+  society    Society  @relation(fields: [societyId], references: [id], onDelete: Cascade)
+  floorCount Int
+  unitCount  Int      @default(0)
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  units   Unit[]
+  notices Notice[]
+
+  @@map("buildings")
+}
+
+enum FlatType {
+  ONE_BHK
+  TWO_BHK
+  THREE_BHK
+  FOUR_BHK
+  OTHER
+}
+
+model Unit {
+  id         String     @id @default(uuid())
+  name       String
+  buildingId String
+  building   Building   @relation(fields: [buildingId], references: [id], onDelete: Cascade)
+  floor      Int
+  type       FlatType
+  ownerId    String?
+  owner      User?      @relation("UnitOwner", fields: [ownerId], references: [id], onDelete: SetNull)
+  tenantId   String?
+  tenant     User?      @relation("UnitTenant", fields: [tenantId], references: [id], onDelete: SetNull)
+  isActive   Boolean    @default(true)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+
+  members    UnitMember[]
+  bills      Bill[]
+  complaints Complaint[]
+
+  @@map("units")
+}
+
+enum UnitRelationship {
+  OWNER
+  TENANT
+  SPOUSE
+  CHILD
+  PARENT
+  SIBLING
+  FRIEND
+  OTHER
+}
+
+enum UnitAccessRole {
+  OWNER
+  RESIDENT
+  LIMITED
+}
+
+enum InvitationStatus {
+  NONE
+  INVITED
+  ACCEPTED
+}
+
+model UnitMember {
+  id               String           @id @default(uuid())
+  unitId           String
+  unit             Unit             @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  userId           String
+  user             User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  relationship     UnitRelationship
+  accessRole       UnitAccessRole   @default(RESIDENT)
+  invitationStatus InvitationStatus @default(NONE)
+  isActive         Boolean          @default(true)
+  joinedAt         DateTime?
+  leftAt           DateTime?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+
+  @@unique([unitId, userId])
+  @@map("unit_members")
+}
+
+enum BillType {
+  MAINTENANCE
+  ELECTRICITY
+  WATER
+  PARKING
+  OTHER
+}
+
+enum BillStatus {
+  PENDING
+  PAID
+  OVERDUE
+  CANCELLED
+}
+
+model Bill {
+  id          String     @id @default(uuid())
+  type        BillType
+  amount      Float
+  unitId      String
+  unit        Unit       @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  status      BillStatus @default(PENDING)
+  dueDate     DateTime
+  paidAt      DateTime?
+  description String?    @default("")
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@map("bills")
+}
+
+enum ComplaintPriority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum ComplaintStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+  REJECTED
+}
+
+model Complaint {
+  id          String            @id @default(uuid())
+  name        String
+  desc        String
+  priority    ComplaintPriority @default(MEDIUM)
+  status      ComplaintStatus   @default(OPEN)
+  createdById String
+  createdBy   User              @relation("ComplaintCreator", fields: [createdById], references: [id], onDelete: Cascade)
+  unitId      String
+  unit        Unit              @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  solvedAt    DateTime?
+  solvedById  String?
+  solvedBy    User?             @relation("ComplaintSolver", fields: [solvedById], references: [id], onDelete: SetNull)
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  @@map("complaints")
+}
+
+enum NoticeType {
+  GENERAL
+  MAINTENANCE
+  EVENT
+  EMERGENCY
+  MEETING
+  OTHER
+}
+
+enum NoticePriority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+model Notice {
+  id          String         @id @default(uuid())
+  title       String
+  description String
+  societyId   String
+  society     Society        @relation(fields: [societyId], references: [id], onDelete: Cascade)
+  buildingId  String?
+  building    Building?      @relation(fields: [buildingId], references: [id], onDelete: SetNull)
+  createdById String
+  createdBy   User           @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  type        NoticeType     @default(GENERAL)
+  priority    NoticePriority @default(MEDIUM)
+  isActive    Boolean        @default(true)
+  expiresAt   DateTime?
+  attachments String[]       @default([])
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@map("notices")
+}

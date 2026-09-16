@@ -1,173 +1,137 @@
 import { Request, Response } from "express";
+import { UserRole } from "@prisma/client";
 import { asyncHandler } from "../../utils/AsyncHandler";
 import { ApiError } from "../../utils/ApiError";
 import { ApiResponse } from "../../utils/ApiResponse";
 import { BaseController } from "../../Base/Base.controller";
-import { UserService } from "./user.service";
-import { USERROLE } from "./user.model";
-
-const userService = new UserService();
+import { userService } from "./user.service";
 
 class UserController extends BaseController {
-
-  // register the user
+  // ─── Register User ──────────────────────────────────────────────────────────
   registerUser = asyncHandler(async (req: Request, res: Response) => {
-  const {
-    first,
-    last,
-    phone,
-    role,
-    email,
-    password,
-  } = req.body as {
-    first?: string;
-    last?: string;
-    phone?: string;
-    role?: USERROLE;
-    email?: string;
-    password?: string;
-  };
+    const { first, last, phone, role, email, password } = req.body as {
+      first?: string;
+      last?: string;
+      phone?: string;
+      role?: UserRole;
+      email?: string;
+      password?: string;
+    };
 
-  if (
-    !first?.trim() ||
-    !last?.trim()  ||
-    !phone?.trim() ||
-    !email?.trim() ||
-    !password?.trim()
-  ) {
-    throw new ApiError(400, "First name, phone, email and password are required");
-  }
+    if (!first?.trim() || !phone?.trim() || !password?.trim()) {
+      throw new ApiError(400, "First name, phone, and password are required");
+    }
 
-  const user = await userService.registerUser({
-    first: first.trim(),
-    last: last?.trim() || "",
-    phone: phone.trim(),
-    role: role || USERROLE.SOCIETY_ADMIN,
-    email: email.trim().toLowerCase(),
-    password,
+    const user = await userService.registerUser({
+      first: first.trim(),
+      last: last?.trim() || "",
+      phone: phone.trim(),
+      role: role || UserRole.SOCIETY_ADMIN,
+      email: email?.trim().toLowerCase() || undefined,
+      password,
+    });
+
+    return this.created(res, "User registered successfully", user);
   });
 
-  return this.created(res, "Registered successfully", user);
-});
-  // login
- loginUser = asyncHandler(async (req: Request, res: Response) => {
+  // ─── Web Login (Cookie + JSON) ──────────────────────────────────────────────
+  loginUser = asyncHandler(async (req: Request, res: Response) => {
     const { phone, password } = req.body as {
-      phone: string;
-      password: string;
+      phone?: string;
+      password?: string;
     };
-    if (!phone?.trim() || !password?.trim())
-      throw new ApiError(400, "All fields are required");
+
+    if (!phone?.trim() || !password?.trim()) {
+      throw new ApiError(400, "Phone number and password are required");
+    }
 
     const { loginData, accessToken, refreshToken } =
       await userService.loginUser(phone, password);
 
     return res
       .status(200)
-      .clearCookie("OtpToken")
       .cookie("AccessToken", accessToken, this.cookieOptions)
       .cookie("RefreshToken", refreshToken, this.cookieOptions)
       .json(
         new ApiResponse(200, "Logged in successfully", {
           user: loginData,
-        }),
+          accessToken,
+          refreshToken,
+        })
       );
   });
-  // mobile login
+
+  // ─── Mobile Login (JSON Token Payload) ──────────────────────────────────────
   loginUserMobile = asyncHandler(async (req: Request, res: Response) => {
     const { phone, password } = req.body as {
-      phone: string;
-      password: string;
+      phone?: string;
+      password?: string;
     };
-    if (!phone?.trim() || !password?.trim())
-      throw new ApiError(400, "All fields are required");
+
+    if (!phone?.trim() || !password?.trim()) {
+      throw new ApiError(400, "Phone number and password are required");
+    }
 
     const { loginData, accessToken, refreshToken } =
       await userService.loginUser(phone, password);
 
-    return res
-      .status(200)
-      .json(
-        new ApiResponse(200, "Logged in successfully", {
-          user: loginData,
-          accestoken:accessToken,
-          refreshToken:refreshToken
-        }),
-      );
+    return res.status(200).json(
+      new ApiResponse(200, "Logged in successfully", {
+        user: loginData,
+        accessToken,
+        refreshToken,
+      })
+    );
   });
 
+  // ─── Get Current User Profile ───────────────────────────────────────────────
+  me = asyncHandler(async (req: Request, res: Response) => {
+    const userId = this.getUserId(req);
+    const user = await userService.me(userId);
 
-  // //me
+    return this.ok(res, "User profile retrieved successfully", user);
+  });
 
-  // me = asyncHandler(async(req:Request, res:Response)=>{
-  //   const user = await userService.me(this.getUserId(req));
-  //   return res
-  //     .status(200)
-  //     .json(new ApiResponse(200, "Logged out successfully" ,user));
-  // })
+  // ─── Logout User ────────────────────────────────────────────────────────────
+  logoutUser = asyncHandler(async (req: Request, res: Response) => {
+    const userId = this.getUserId(req);
+    if (userId) {
+      await userService.logoutUser(userId);
+    }
 
+    return res
+      .status(200)
+      .clearCookie("AccessToken", this.cookieOptions)
+      .clearCookie("RefreshToken", this.cookieOptions)
+      .json(new ApiResponse(200, "Logged out successfully"));
+  });
 
-  // //logout user
-  // logoutUser = asyncHandler(async (req: Request, res: Response) => {
-  //   await userService.logoutUser(this.getUserId(req));
-  //   return res
-  //     .status(200)
-  //     .clearCookie("AccessToken", this.cookieOptions)
-  //     .clearCookie("RefreshToken", this.cookieOptions)
-  //     .json(new ApiResponse(200, "Logged out successfully"));
-  // });
+  // ─── Refresh Access Token ───────────────────────────────────────────────────
+  resetRefreshToken = asyncHandler(async (req: Request, res: Response) => {
+    const incomingRefreshToken =
+      req.cookies?.RefreshToken ||
+      (req.headers["refreshtoken"] as string | undefined) ||
+      (req.headers["x-refresh-token"] as string | undefined) ||
+      req.body?.refreshToken;
 
-  // // reset refresh token
-  // resetRefreshToken = asyncHandler(async (req: Request, res: Response) => {
-  //   const incomingRefToken =
-  //     req.cookies?.RefreshToken ||
-  //     (req.headers["refreshtoken"] as string | undefined);
-  //   if (!incomingRefToken) throw new ApiError(401, "Unauthorized access");
+    if (!incomingRefreshToken) {
+      throw new ApiError(401, "No refresh token provided");
+    }
 
-  //   const { accessToken, refreshToken } =
-  //     await userService.resetRefreshToken(incomingRefToken);
+    const { accessToken, refreshToken } =
+      await userService.resetRefreshToken(incomingRefreshToken);
 
-  //   return res
-  //     .status(200)
-  //     .cookie("AccessToken", accessToken, this.cookieOptions)
-  //     .cookie("RefreshToken", refreshToken, this.cookieOptions)
-  //     .json(new ApiResponse(200, "Token updated successfully"));
-  // });
-
-  // //forgot password
-  // forgotPassword = asyncHandler(async (req: Request, res: Response) => {
-  //   const { email } = req.body as { email: string };
-  //   if (!email?.trim()) throw new ApiError(400, "Give the fields");
-
-  //   const otp = await userService.initForgotPassword(email);
-  //   return res.status(200).json(new ApiResponse(200, "OTP generated", { otp }));
-  // });
-
-  // //verify otp for password
-  // verifyPasswordChangeOtp = asyncHandler(
-  //   async (req: Request, res: Response) => {
-  //     const { email, otp } = req.body as { email: string; otp: string };
-  //     if (!email || !otp) throw new ApiError(400, "Give the fields");
-
-  //     const otpToken = await userService.verifyOtp(email, otp);
-  //     return res
-  //       .status(200)
-  //       .cookie("OtpToken", otpToken, this.cookieOptions)
-  //       .json(new ApiResponse(200, "OTP verified"));
-  //   },
-  // );
-
-  // // update password
-  // updatePassword = asyncHandler(async (req: Request, res: Response) => {
-  //   const { password } = req.body as { password: string };
-  //   if (!password?.trim()) throw new ApiError(400, "Give a password");
-
-  //   await userService.updatePassword(this.getUserId(req), password);
-  //   return res
-  //     .status(200)
-  //     .clearCookie("OtpToken", this.cookieOptions)
-  //     .json(new ApiResponse(200, "Password changed"));
-  // });
-
+    return res
+      .status(200)
+      .cookie("AccessToken", accessToken, this.cookieOptions)
+      .cookie("RefreshToken", refreshToken, this.cookieOptions)
+      .json(
+        new ApiResponse(200, "Token refreshed successfully", {
+          accessToken,
+          refreshToken,
+        })
+      );
+  });
 }
 
 export const userController = new UserController();
