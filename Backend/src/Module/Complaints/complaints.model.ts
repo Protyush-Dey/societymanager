@@ -1,4 +1,3 @@
-```ts id="q7m3kp"
 import {
   getModelForClass,
   modelOptions,
@@ -84,4 +83,3 @@ export class IComplaint {
 }
 
 export const ComplaintModel = getModelForClass(IComplaint);
-```

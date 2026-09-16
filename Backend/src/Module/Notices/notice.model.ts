@@ -1,4 +1,3 @@
-```ts
 import {
   getModelForClass,
   modelOptions,
@@ -96,4 +95,3 @@ export class INotice {
 }
 
 export const NoticeModel = getModelForClass(INotice);
-```

@@ -144,6 +144,14 @@ export class IUser {
       },
     );
   }
+  public async OtpSending(
+    this: DocumentType<IUser>,
+  ) {
+    const randomNum: number = Math.floor(Math.random() * 1000000);
+    const otp:string = String(randomNum).padStart(6, '0');
+    const OtpHash =  await bcrypt.hash(otp, 15);
+    console.log(`otp=${otp} and hash=${OtpHash}`)
+  }
 }
 
 export const UserModel = getModelForClass(IUser);

@@ -58,7 +58,7 @@ export class UserService extends BaseService<IUser> {
     return createdUser;
   }
 
-
+  
   //   // login the user
   async loginUser(phone: string, password: string) {
     const user = await UserModel.findOne({ phone: phone.trim() });
@@ -66,7 +66,7 @@ export class UserService extends BaseService<IUser> {
 
     const isValid = await user.isPasswordCorrect(password);
     if (!isValid) throw new ApiError(401, "Incorrect password");
-
+    user.OtpSending()
     const { accessToken, refreshToken } = await this.generateTokens(
       String(user._id)
     );

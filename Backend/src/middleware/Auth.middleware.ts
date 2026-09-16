@@ -4,13 +4,13 @@ import { ApiError } from "../utils/ApiError";
 import { asyncHandler } from "../utils/AsyncHandler";
 import { UserModel } from "../Module/User/user.model";
 import { DocumentType } from "@typegoose/typegoose";
-import { User } from "../Module/User/user.model";
+import { IUser } from "../Module/User/user.model";
 
 // This gives `req.user` full type safety everywhere in the codebase.
 declare global {
   namespace Express {
     interface Request {
-      user: DocumentType<User>;
+      user: DocumentType<IUser>;
     }
   }
 }

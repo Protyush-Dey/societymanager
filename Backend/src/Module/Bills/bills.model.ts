@@ -1,4 +1,3 @@
-```ts id="x9k2as"
 import {
   getModelForClass,
   modelOptions,
@@ -71,4 +70,3 @@ export class IBill {
 }
 
 export const BillModel = getModelForClass(IBill);
-```

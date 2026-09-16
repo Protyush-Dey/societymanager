@@ -7,7 +7,7 @@ interface Config {
 }
 
 export const config: Config = {
-  mongoUrl: process.env.MONGO_URL || "",
+  mongoUrl: process.env.MONGO_URL || "mongodb://localhost:27017",
 };
 
 console.log(
