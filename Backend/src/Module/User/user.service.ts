@@ -142,76 +142,76 @@ export class UserService {
 
   // ─── Get Current User (Me) ──────────────────────────────────────────────────
 
-  async me(userId: string): Promise<UserSafePayload> {
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      select: {
-        id: true,
-        firstName: true,
-        lastName: true,
-        email: true,
-        phone: true,
-        role: true,
-        profileImage: true,
-        isActive: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-    });
+  // async me(userId: string): Promise<UserSafePayload> {
+  //   const user = await prisma.user.findUnique({
+  //     where: { id: userId },
+  //     select: {
+  //       id: true,
+  //       firstName: true,
+  //       lastName: true,
+  //       email: true,
+  //       phone: true,
+  //       role: true,
+  //       profileImage: true,
+  //       isActive: true,
+  //       createdAt: true,
+  //       updatedAt: true,
+  //     },
+  //   });
 
-    if (!user) {
-      throw new ApiError(404, "User not found");
-    }
+  //   if (!user) {
+  //     throw new ApiError(404, "User not found");
+  //   }
 
-    return user;
-  }
+  //   return user;
+  // }
 
   // ─── Logout User ────────────────────────────────────────────────────────────
 
-  async logoutUser(userId: string): Promise<void> {
-    await prisma.user.update({
-      where: { id: userId },
-      data: { refreshToken: null },
-    });
-  }
+  // async logoutUser(userId: string): Promise<void> {
+  //   await prisma.user.update({
+  //     where: { id: userId },
+  //     data: { refreshToken: null },
+  //   });
+  // }
 
   // ─── Reset Refresh Token ────────────────────────────────────────────────────
 
-  async resetRefreshToken(incomingRefreshToken: string) {
-    const refreshSecret = process.env.REFRESH_TOKEN_SECRET || "default_refresh_secret";
+  // async resetRefreshToken(incomingRefreshToken: string) {
+  //   const refreshSecret = process.env.REFRESH_TOKEN_SECRET || "default_refresh_secret";
 
-    let decoded: { id?: string; _id?: string };
-    try {
-      decoded = jwt.verify(incomingRefreshToken, refreshSecret) as {
-        id?: string;
-        _id?: string;
-      };
-    } catch {
-      throw new ApiError(401, "Invalid or expired refresh token");
-    }
+  //   let decoded: { id?: string; _id?: string };
+  //   try {
+  //     decoded = jwt.verify(incomingRefreshToken, refreshSecret) as {
+  //       id?: string;
+  //       _id?: string;
+  //     };
+  //   } catch {
+  //     throw new ApiError(401, "Invalid or expired refresh token");
+  //   }
 
-    const userId = decoded.id || decoded._id;
-    if (!userId) {
-      throw new ApiError(401, "Invalid token payload");
-    }
+  //   const userId = decoded.id || decoded._id;
+  //   if (!userId) {
+  //     throw new ApiError(401, "Invalid token payload");
+  //   }
 
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-    });
+  //   const user = await prisma.user.findUnique({
+  //     where: { id: userId },
+  //   });
 
-    if (!user || user.refreshToken !== incomingRefreshToken) {
-      throw new ApiError(401, "Refresh token expired or already used");
-    }
+  //   if (!user || user.refreshToken !== incomingRefreshToken) {
+  //     throw new ApiError(401, "Refresh token expired or already used");
+  //   }
 
-    const { accessToken, refreshToken: newRefreshToken } = this.generateTokens(user);
+  //   const { accessToken, refreshToken: newRefreshToken } = this.generateTokens(user);
 
-    await prisma.user.update({
-      where: { id: user.id },
-      data: { refreshToken: newRefreshToken },
-    });
+  //   await prisma.user.update({
+  //     where: { id: user.id },
+  //     data: { refreshToken: newRefreshToken },
+  //   });
 
-    return { accessToken, refreshToken: newRefreshToken };
-  }
+  //   return { accessToken, refreshToken: newRefreshToken };
+  // }
 }
 
 export const userService = new UserService();
